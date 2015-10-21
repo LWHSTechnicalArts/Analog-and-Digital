@@ -1,11 +1,12 @@
+String message = "I have been running for ";
+String unit = " mS";
 
 void setup() {
-  // initialize serial communication at 9600 bits per second:
-  Serial.begin(9600);
+  Serial.begin(9600);    // initialize serial communication at 9600 bits per second:
 }
 
 void loop() {
-  Serial.print("I've been running for "); Serial.print(millis()); Serial.println(" mS");
+  Serial.println(message + millis() + unit);  //serial print the time in milliSed the arduino has been running
 }
 
 
