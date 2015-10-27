@@ -1,4 +1,4 @@
-// Based on Adafruit_NeoMatrix example for single NeoPixel Shield. Modified by A.Kleindolph.
+// Based on Adafruit_NeoMatrix example for single NeoPixel Shield. Modified by A.Kleindolph 10-2015.
 
 #include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
