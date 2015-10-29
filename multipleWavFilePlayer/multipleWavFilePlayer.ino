@@ -30,7 +30,7 @@ void setup() {
   pinMode(3, INPUT_PULLUP);
   // Audio connections require memory to work.  For more
   // detailed information, see the MemoryAndCpuUsage example
-  AudioMemory(5);
+  AudioMemory(100);
 
   sgtl5000_1.enable();
   sgtl5000_1.volume(0.5);
