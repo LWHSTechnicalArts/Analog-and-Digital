@@ -13,10 +13,10 @@ AudioConnection          patchCord2(sine1, 0, i2s1, 1);
 
 void setup() {
   AudioMemory(2);   // required to play audio
+  sine1.amplitude(0.5);   // set sine frequency 
 }
 
 void loop() {
-  sine1.frequency(100);   // set sine frequency
-  sine1.amplitude(0.5);   // set sine volume
+  sine1.frequency(100);   // set sine frequency 
   Serial.println(sine1.processorUsage());   //see how much audio memory the sine is using
 }
