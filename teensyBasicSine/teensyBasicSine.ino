@@ -13,7 +13,11 @@ AudioConnection          patchCord2(sine1, 0, i2s1, 1);
 
 void setup() {
   AudioMemory(2);   // required to play audio
-  sine1.amplitude(0.5);   // set sine frequency 
+
+  audioShield.enable();     //enable audio shield
+  audioShield.volume(0.5);  //set overall volume
+  
+  sine1.amplitude(0.5);   // set sine amplitude 
 }
 
 void loop() {
