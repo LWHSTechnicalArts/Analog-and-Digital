@@ -18,7 +18,6 @@ AudioControlSGTL5000     sgtl5000_1;     //xy=472,181
 
 void setup() {
   AudioMemory(10);   // required to play audio
-  pinMode(0, INPUT_PULLUP);
   sgtl5000_1.enable();     //enable audio shield
   sgtl5000_1.volume(0.5);  //set overall volume
   waveform1.begin(0.3, 100, WAVEFORM_SQUARE);
