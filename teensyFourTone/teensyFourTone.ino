@@ -2,6 +2,7 @@
 #include <Wire.h>
 #include <SPI.h>
 #include <SD.h>
+#include <SerialFlash.h>
 
 // GUItool: begin automatically generated code
 AudioSynthWaveformSine   sine2;          //xy=156,317

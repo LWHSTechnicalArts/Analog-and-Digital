@@ -2,7 +2,7 @@
 #include <Wire.h>
 #include <SPI.h>
 #include <SD.h>
-//#include <SerialFlash.h>
+#include <SerialFlash.h>
 
 // GUItool: begin automatically generated code
 AudioPlaySdWav           playSdWav1;     //xy=106,133

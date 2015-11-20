@@ -3,6 +3,7 @@
 #include <Wire.h>
 #include <SPI.h>
 #include <SD.h>
+#include <SerialFlash.h>
 
 // GUItool: begin automatically generated code
 AudioSynthWaveform       waveform1;      //xy=137,157
