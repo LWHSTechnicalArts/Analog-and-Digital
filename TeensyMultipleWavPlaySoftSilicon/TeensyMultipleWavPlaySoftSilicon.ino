@@ -26,6 +26,8 @@ void setup() {
   pinMode(2, INPUT_PULLUP);
   pinMode(3, INPUT_PULLUP);
 
+  pinMode(15, OUTPUT);
+
   sgtl5000_1.enable();     //enable audio shield
   sgtl5000_1.volume(0.5);  //set overall volume
 
@@ -38,12 +40,19 @@ void setup() {
       delay(500);
     }
   }
+  digitalWrite(15, HIGH);
+  delay(500);
+  digitalWrite(15, LOW);
 }
 
 void loop() {
+  digitalWrite(15, LOW);
   // put your main code here, to run repeatedly:
   if (digitalRead(0) == LOW) {
+    digitalWrite(15, HIGH);
     playSdWav1.play("jawharp.wav");
+    Serial.print(digitalRead(0));
+    delay(300);
   }
   if (digitalRead(1) == LOW) {
     playSdWav2.play("flamenco.wav");
@@ -54,9 +63,4 @@ void loop() {
   if (digitalRead(3) == LOW) {
     playSdWav3.play("b.wav");
   }
-  Serial.print(playSdWav1.processorUsage());
-  Serial.print("  ");
-  Serial.print(playSdWav2.processorUsage());  
-  Serial.print("  ");
-  Serial.println(playSdWav3.processorUsage()); 
 }
