@@ -21,10 +21,10 @@ AudioControlSGTL5000     sgtl5000_1;     //xy=386,55
 // GUItool: end automatically generated code
 
 //teensy lights hookup
-int pins[8]= {15,16,17,18,19,20,21,22};
+int pins[8]= {15,16,17,18,19,20,21,13};  //do not use 7,14,22,23
 
 int lightcols[4] = {15, 16, 17, 18};
-int lightrows[4] = {19, 20, 21, 22};
+int lightrows[4] = {19, 20, 21, 13};
 
 //keypad
 const byte ROWS = 4; //four rows
@@ -63,18 +63,24 @@ void setup() {
 
   // set up cols and rows
   for (int i = 0; i <= 3; i++) {
-    digitalWrite(lightcols[i], LOW);
+    digitalWrite(lightcols[i], HIGH);
   }
 
   for (int i = 0; i <= 3; i++) {
-    digitalWrite(lightrows[i], LOW);
+    digitalWrite(lightrows[i], HIGH);
   }
 
-    digitalWrite(lightcols[0], HIGH);
-    digitalWrite(lightrows[0], LOW);
-    delay(1000);
-    digitalWrite(lightcols[0], LOW);
     digitalWrite(lightrows[0], HIGH);
+    digitalWrite(lightrows[1], LOW);
+    digitalWrite(lightrows[2], LOW);
+    digitalWrite(lightrows[3], LOW);
+    digitalWrite(lightcols[0], HIGH);
+    digitalWrite(lightcols[1], HIGH);
+    digitalWrite(lightcols[2], HIGH);
+    digitalWrite(lightcols[3], LOW);
+    delay(1000);
+    digitalWrite(lightrows[0], LOW);
+    digitalWrite(lightcols[3], HIGH);
     delay(1000); 
 }
 
@@ -87,16 +93,45 @@ void loop() {
 
   if (key == '1') {
     playSdWav1.play("jawharp.wav");
-    digitalWrite(lightcols[0], HIGH);
     digitalWrite(lightrows[0], LOW);
-    delay(200);
-    digitalWrite(lightcols[0], LOW);
-    digitalWrite(lightrows[0], HIGH);
+    digitalWrite(lightrows[1], LOW);
+    digitalWrite(lightrows[2], LOW);
+    digitalWrite(lightrows[3], HIGH);
+    digitalWrite(lightcols[0], HIGH);
+    digitalWrite(lightcols[1], HIGH);
+    digitalWrite(lightcols[2], HIGH);
+    digitalWrite(lightcols[3], LOW);
+    delay(250);
+    digitalWrite(lightrows[3], LOW);
+    digitalWrite(lightcols[3], HIGH);
+ 
   }
   if (key == '2') {
     playSdWav2.play("flamenco.wav");
+    digitalWrite(lightrows[0], LOW);
+    digitalWrite(lightrows[1], LOW);
+    digitalWrite(lightrows[2], LOW);
+    digitalWrite(lightrows[3], HIGH);
+    digitalWrite(lightcols[0], HIGH);
+    digitalWrite(lightcols[1], HIGH);
+    digitalWrite(lightcols[2], LOW);
+    digitalWrite(lightcols[3], HIGH);
+    delay(250);
+    digitalWrite(lightrows[3], LOW);
+    digitalWrite(lightcols[2], HIGH);
   }
   if (key == '3') {
     playSdWav3.play("powermet.wav");
+    digitalWrite(lightrows[0], LOW);
+    digitalWrite(lightrows[1], LOW);
+    digitalWrite(lightrows[2], LOW);
+    digitalWrite(lightrows[3], HIGH);
+    digitalWrite(lightcols[0], HIGH);
+    digitalWrite(lightcols[1], LOW);
+    digitalWrite(lightcols[2], HIGH);
+    digitalWrite(lightcols[3], HIGH);
+    delay(250);
+    digitalWrite(lightrows[3], LOW);
+    digitalWrite(lightcols[1], HIGH);
   }
 }

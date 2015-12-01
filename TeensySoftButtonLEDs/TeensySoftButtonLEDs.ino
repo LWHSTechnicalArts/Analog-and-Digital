@@ -1,8 +1,8 @@
 //teensy pin hookups
-int pins[8]= {15,16,17,18,19,20,21,22};
+int pins[8]= {15,16,17,18,19,20,21,13};
 
 int lightcols[4] = {15, 16, 17, 18};
-int lightrows[4] = {19, 20, 21, 22};
+int lightrows[4] = {19, 20, 21, 13};
 
 int delayTime = 100;
 
