@@ -1,3 +1,5 @@
+#include <Keypad.h>
+
 #include <Audio.h>
 #include <Wire.h>
 #include <SPI.h>
@@ -18,18 +20,26 @@ AudioConnection          patchCord5(mixer1, 0, i2s1, 1);
 AudioControlSGTL5000     sgtl5000_1;     //xy=386,55
 // GUItool: end automatically generated code
 
+const byte ROWS = 4; //four rows
+const byte COLS = 3; //three columns
+char keys[ROWS][COLS] = {
+  {'1', '2', '3'},
+  {'4', '5', '6'},
+  {'7', '8', '9'},
+  {'*', '0', '#'}
+};
+byte rowPins[ROWS] = {0,1,2,3}; //connect to the row pinouts of the keypad
+byte colPins[COLS] = {4,5,6}; //connect to the column pinouts of the keypad
+
+Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
+
 void setup() {
-  // put your setup code here, to run once:
   AudioMemory(120);   // required to play audio
-  pinMode(0, INPUT_PULLUP);
-  pinMode(1, INPUT_PULLUP);
-  pinMode(2, INPUT_PULLUP);
-  pinMode(3, INPUT_PULLUP);
+  Serial.begin(9600);
 
   sgtl5000_1.enable();     //enable audio shield
   sgtl5000_1.volume(0.5);  //set overall volume
 
-  Serial.begin(9600);
   SPI.setMOSI(7);
   SPI.setSCK(14);
   if (!(SD.begin(10))) {
@@ -40,24 +50,20 @@ void setup() {
     }
   }
 }
-
 void loop() {
-  // put your main code here, to run repeatedly -- Names need to be 8 characters or less
-  if (digitalRead(0) == LOW) {
+  char key = keypad.getKey();
+
+  if (key != NO_KEY) {
+    Serial.println(key);
+  }
+
+  if (key == '1') {
     playSdWav1.play("jawharp.wav");
   }
-  if (digitalRead(1) == LOW) {
+  if (key == '2') {
     playSdWav2.play("flamenco.wav");
   }
-  if (digitalRead(2) == LOW) {
+  if (key == '3') {
     playSdWav3.play("powermet.wav");
   }
-  if (digitalRead(3) == LOW) {
-    playSdWav3.play("b.wav");
-  }
-  Serial.print(playSdWav1.processorUsage());
-  Serial.print("  ");
-  Serial.print(playSdWav2.processorUsage());
-  Serial.print("  ");
-  Serial.println(playSdWav3.processorUsage());
 }
