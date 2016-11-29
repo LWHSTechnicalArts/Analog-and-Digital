@@ -13,6 +13,8 @@
 
   Written by Limor Fried/Ladyada for Adafruit Industries.
   MIT license, all text above must be included in any redistribution
+
+  Modified to trigger WAV samples on 11-29-16 by A.Kleindolph
  ****************************************************/
 
 #include <Audio.h>
@@ -22,34 +24,8 @@
 #include <SerialFlash.h>
 #include "Adafruit_Trellis.h"
 
-/***************************************************
-  This example shows reading buttons and setting/clearing buttons in a loop
-  "momentary" mode has the LED light up only when a button is pressed
-  "latching" mode lets you turn the LED on/off when pressed
-
-  Up to 8 matrices can be used but this example will show 4 or 1
- ****************************************************/
-
-#define MOMENTARY 0
-#define LATCHING 1
-// set the mode here
-#define MODE MOMENTARY
-
-
 Adafruit_Trellis matrix0 = Adafruit_Trellis();
-
-// uncomment the below to add 3 more matrices
-/*
-  Adafruit_Trellis matrix1 = Adafruit_Trellis();
-  Adafruit_Trellis matrix2 = Adafruit_Trellis();
-  Adafruit_Trellis matrix3 = Adafruit_Trellis();
-  // you can add another 4, up to 8
-*/
-
-// Just one
 Adafruit_TrellisSet trellis =  Adafruit_TrellisSet(&matrix0);
-// or use the below to select 4, up to 8 can be passed in
-//Adafruit_TrellisSet trellis =  Adafruit_TrellisSet(&matrix0, &matrix1, &matrix2, &matrix3);
 
 // set to however many you're working with here, up to 8
 #define NUMTRELLIS 1
@@ -64,7 +40,7 @@ Adafruit_TrellisSet trellis =  Adafruit_TrellisSet(&matrix0);
 // All Trellises share the SDA, SCL and INT pin!
 // Even 8 tiles use only 3 wires max
 
-// GUItool: begin automatically generated code
+// Teensy GUItool: begin automatically generated code
 AudioPlaySdWav           playSdWav3;     //xy=221,284
 AudioPlaySdWav           playSdWav2;     //xy=226,214
 AudioPlaySdWav           playSdWav1;     //xy=231,138
@@ -105,17 +81,17 @@ void setup() {
   trellis.begin(0x70);  // only one
   // trellis.begin(0x70, 0x71, 0x72, 0x73);  // or four!
 
-  // light up all the LEDs in order
+  // light up all the LEDs in order  - - optional but fun!
   for (uint8_t i = 0; i < numKeys; i++) {
     trellis.setLED(i);
     trellis.writeDisplay();
-    delay(50);
+    delay(20);
   }
   // then turn them off
   for (uint8_t i = 0; i < numKeys; i++) {
     trellis.clrLED(i);
     trellis.writeDisplay();
-    delay(50);
+    delay(20);
   }
 }
 
@@ -178,8 +154,10 @@ void clearLeds() {
     trellis.clrLED(2);
     trellis.writeDisplay();
   }
-  // tell the trellis to set the LEDs we requested
-  trellis.writeDisplay();
+  for (int off = 3; off < 16; off++) {   //this needs to be altered or removed as you add more button triggers 
+    trellis.clrLED(off);
+    trellis.writeDisplay();
+  }
 }
 
 
