@@ -1,10 +1,10 @@
-/* Based on Adafruit_NeoMatrix example for single NeoPixel Shield.
+/* Based on Adafruit_NeoMatrix example for two neopixel rings, one 16 led and one 12. 12 led ring is RGBW
 and
 SparkFun Spectrum Shield Demo
 Toni Klopfenstein @ SparkFun Electronics
 February 2015
 https://github.com/sparkfun/Spectrum_Shield
-Modified by A.Kleindolph 10-2015
+Modified by A.Kleindolph 12-2017
  */
 #include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
@@ -17,7 +17,7 @@ Modified by A.Kleindolph 10-2015
 
 //declare matrix shield data pin
 #define PIN 12
-#define sm 11
+#define smPIN 11
 
 //declare neopixel matrix configuration
 Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(1, 16, PIN,
@@ -25,7 +25,7 @@ Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(1, 16, PIN,
                             NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
                             NEO_GRB            + NEO_KHZ800);
 
-Adafruit_NeoMatrix matrixSmall = Adafruit_NeoMatrix(1, 16, sm,
+Adafruit_NeoMatrix matrixSmall = Adafruit_NeoMatrix(1, 12, smPIN,
                             NEO_MATRIX_TOP     + NEO_MATRIX_RIGHT +
                             NEO_MATRIX_COLUMNS + NEO_MATRIX_PROGRESSIVE,
                             NEO_RGBW            + NEO_KHZ800);
