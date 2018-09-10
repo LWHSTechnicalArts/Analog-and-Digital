@@ -23,11 +23,11 @@ void setup() {
   AudioMemory(2);   // required to play audio
 
   sgtl5000_1.enable();          //enable audio shield
-  sgtl5000_1.volume(0.5);   //set overall volume
+  sgtl5000_1.volume(0.7);   //set overall volume
 
   sine1.amplitude(0.5);          // set sine amplitude
 
-
+  delay(200);
   // wait until serial port opens for native USB devices
   while (! Serial) {
     delay(1);
