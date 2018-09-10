@@ -29,9 +29,9 @@ void setup() {
 
   delay(200);
   // wait until serial port opens for native USB devices
-  while (! Serial) {
-    delay(1);
-  }
+//  while (! Serial) {
+//    delay(1);
+//  }
 
   Serial.println("Adafruit VL53L0X test");
   if (!lox.begin()) {
